@@ -1,0 +1,178 @@
+# ===============================
+# PYTHON PRACTICE SHEET - COMBINED PROGRAM
+# ===============================
+
+# ---------- Student Report System ----------
+def student_report():
+    n = int(input("Enter number of students: "))
+    marks = []
+
+    for i in range(n):
+        m = int(input(f"Enter marks of student {i+1}: "))
+        marks.append(m)
+
+    avg = sum(marks) / len(marks)
+    highest = max(marks)
+    lowest = min(marks)
+
+    passed = 0
+    for mark in marks:
+        if mark >= 40:
+            passed += 1
+
+    print("\n----- Student Report -----")
+    print("Marks:", marks)
+    print("Average:", avg)
+    print("Highest:", highest)
+    print("Lowest:", lowest)
+    print("Passed Students:", passed)
+
+
+# ---------- Dictionary Login System ----------
+def login_system():
+    users = {
+        "admin": "1234",
+        "sam": "python",
+        "sri": "welcome"
+    }
+
+    attempts = 3
+
+    while attempts > 0:
+        username = input("Enter Username: ")
+        password = input("Enter Password: ")
+
+        if username in users and users[username] == password:
+            print("Login Successful")
+            return
+        else:
+            attempts -= 1
+            print("Invalid Login")
+            print("Attempts Left:", attempts)
+
+    print("Account Locked")
+
+
+# ---------- Number Analyzer ----------
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+def is_armstrong(n):
+    digits = len(str(n))
+    total = 0
+    temp = n
+
+    while temp > 0:
+        digit = temp % 10
+        total += digit ** digits
+        temp //= 10
+
+    return total == n
+
+
+def is_palindrome(n):
+    return str(n) == str(n)[::-1]
+
+
+def number_analyzer():
+    num = int(input("Enter a number: "))
+
+    print("Prime:", is_prime(num))
+    print("Armstrong:", is_armstrong(num))
+    print("Palindrome:", is_palindrome(num))
+
+
+# ---------- Calculator ----------
+def add(a, b):
+    return a + b
+
+
+def subtract(a, b):
+    return a - b
+
+
+def multiply(a, b):
+    return a * b
+
+
+def divide(a, b):
+    if b == 0:
+        return "Division by zero not possible"
+    return a / b
+
+
+def calculator():
+    a = float(input("Enter First Number: "))
+    b = float(input("Enter Second Number: "))
+
+    print("\n1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+
+    choice = int(input("Enter Choice: "))
+
+    if choice == 1:
+        print("Result:", add(a, b))
+    elif choice == 2:
+        print("Result:", subtract(a, b))
+    elif choice == 3:
+        print("Result:", multiply(a, b))
+    elif choice == 4:
+        print("Result:", divide(a, b))
+    else:
+        print("Invalid Choice")
+
+
+# ---------- String Manipulation ----------
+def string_project():
+    text = input("Enter a String: ")
+
+    vowels = "AEIOUaeiou"
+    vowel_count = 0
+
+    for ch in text:
+        if ch in vowels:
+            vowel_count += 1
+
+    word_count = len(text.split())
+    reverse = text[::-1]
+
+    print("Vowels:", vowel_count)
+    print("Words:", word_count)
+    print("Reversed String:", reverse)
+
+
+# ---------- Main Menu ----------
+while True:
+    print("\n========== PYTHON PRACTICE SHEET ==========")
+    print("1. Student Report System")
+    print("2. Dictionary Login System")
+    print("3. Number Analyzer")
+    print("4. Simple Calculator")
+    print("5. String Manipulation")
+    print("6. Exit")
+
+    option = int(input("Enter your choice: "))
+
+    if option == 1:
+        student_report()
+    elif option == 2:
+        login_system()
+    elif option == 3:
+        number_analyzer()
+    elif option == 4:
+        calculator()
+    elif option == 5:
+        string_project()
+    elif option == 6:
+        print("Thank You!")
+        break
+    else:
+        print("Invalid Choice. Try Again.")
